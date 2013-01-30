@@ -1,4 +1,7 @@
 # Necessary steps to run specs
+package 'build-essential' do
+  action :install
+end
 
 gem_package 'bundler' do
   action :install
