@@ -7,11 +7,11 @@ module Vagabond
         match do |actual|
           ::File.exist? actual.title
         end
-        
+
         failure_message_for_should do |actual|
           "expected #{actual.to_s} would exist"
         end
-        
+
         failure_message_for_should_not do |actual|
           "expected #{actual.to_s} would not exist"
         end

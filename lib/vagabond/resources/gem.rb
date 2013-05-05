@@ -25,4 +25,4 @@ module Vagabond
       end
     end
   end
-end      
+end

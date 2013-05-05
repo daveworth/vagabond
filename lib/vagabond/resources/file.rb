@@ -2,7 +2,7 @@ module Vagabond
   module Resources
     class File
       attr_accessor :name, :owner, :group, :path
-      
+
       def initialize(name, options = {})
         @name = name
         if options[:owner]
@@ -15,11 +15,11 @@ module Vagabond
           @path = options[:path]
         end
       end
-      
+
       def title
         @path || @name
       end
-      
+
       def to_s
         "file(#{title})"
       end

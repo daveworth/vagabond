@@ -14,7 +14,7 @@ module Vagabond
       def to_s
         "package(#{title})"
       end
-      
+
       def state
         aptitude.match(/^State: (.*)$/)[1] rescue nil
       end
