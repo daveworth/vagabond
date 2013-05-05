@@ -19,7 +19,7 @@ namespace :vagabond do
     puts "vagrant provision"
     env.cli("provision")
     env.vms.each do | name, vm |
-      vm.channel.execute("cd /vagrant && rspec spec/*_spec.rb") do |output_handle, data|
+      vm.channel.execute("cd /vagrant && rake spec") do |output_handle, data|
         puts data
       end
     end
