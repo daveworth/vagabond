@@ -1,17 +1,16 @@
 require 'rubygems'
 require 'vagrant'
 
-
 namespace :vagabond do
   task :full_spec => [:cleanup, :spec]
-  
+
   desc "Remove existing vagrant vm"
   task :cleanup do
     env = Vagrant::Environment.new
     puts "vagrant destroy"
     env.cli("destroy")
   end
-  
+
   desc "Run specs on vagabond"
   task :spec do
     env = Vagrant::Environment.new
