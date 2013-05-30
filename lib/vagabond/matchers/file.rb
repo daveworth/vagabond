@@ -38,6 +38,25 @@ module Vagabond
           "should be a #{expected}"
         end
       end
+
+      RSpec::Matchers.define :have_content do |expected|
+        match do |actual|
+          expected = /#{expected}/ if expected.kind_of? String
+          if expected.options == Regexp::MULTILINE
+            ::IO.read(actual.title) =~ expected
+          else
+            ::File.open(actual.title, "r") do |file|
+              file.each_line do |line|
+                break(true) if line =~ expected
+              end
+            end
+          end
+        end
+
+        description do
+          "should contain content matching #{expected}"
+        end
+      end
     end
   end
 end

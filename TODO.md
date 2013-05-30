@@ -1,7 +1,5 @@
 # Matchers and Resources
 
-* file (partially implemented)
-  - needs has_content(Regexp) matcher
 * package (partially implemented)
   - rpm support?
   - merge gem fu into package as well?

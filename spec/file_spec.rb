@@ -9,6 +9,9 @@ describe file("/etc/motd") do
   it { should have_owner('root') }
   it { should have_group('root') }
   it { should have_file_type(:file) }
+  it { should have_content('foo') }
+  it { should have_content(/foo/) }
+  it { should have_content(/foo.*baz/m)}
 end
 
 describe file("/etc") do
