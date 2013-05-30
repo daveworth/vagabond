@@ -18,9 +18,11 @@ end
 
 # Items for testing specs
 
-file '/etc/motd' do
-  content 'foobar'
-  action [:delete, :create]
+template "motd" do
+  path '/etc/motd'
+  mode 0644
+  owner "root"
+  group "root"
 end
 
 execute "apt-get update" do
