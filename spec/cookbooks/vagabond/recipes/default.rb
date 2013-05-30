@@ -32,3 +32,13 @@ end
 package 'apache2-mpm-worker' do
   action :install
 end
+
+user "coder" do
+  shell "/bin/bash"
+end
+
+group "group" do
+  members "coder"
+  gid 314159
+  append true
+end

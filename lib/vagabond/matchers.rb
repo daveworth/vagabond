@@ -5,6 +5,7 @@ require 'vagabond/matchers/file'
 require 'vagabond/matchers/gem'
 require 'vagabond/matchers/package'
 require 'vagabond/matchers/service'
+require 'vagabond/matchers/user'
 
 module Vagabond
   module Matchers
@@ -13,5 +14,6 @@ module Vagabond
     include Vagabond::Matchers::Gem
     include Vagabond::Matchers::Package
     include Vagabond::Matchers::Service
+    include Vagabond::Matchers::User
   end
 end

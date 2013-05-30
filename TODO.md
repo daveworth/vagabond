@@ -4,7 +4,6 @@
   - rpm support?
   - merge gem fu into package as well?
 * service (partially implemented)
-* user (needs implemented)
 * group (needs implemented)
 * cron (needs implemented)
 * exec (needs implemented)

@@ -4,6 +4,7 @@ require 'vagabond/resources/file'
 require 'vagabond/resources/gem'
 require 'vagabond/resources/package'
 require 'vagabond/resources/service'
+require 'vagabond/resources/user'
 
 module Vagabond
   module Resources
@@ -21,6 +22,10 @@ module Vagabond
 
     def service(name)
       Vagabond::Resources::Service.new(name)
+    end
+
+    def user(name, options = {})
+      Vagabond::Resources::User.new(name, options)
     end
   end
 end
