@@ -23,6 +23,10 @@ module Vagabond
       def to_s
         "file(#{title})"
       end
+
+      def exists?
+        ::File.exists? title
+      end
     end
   end
 end
