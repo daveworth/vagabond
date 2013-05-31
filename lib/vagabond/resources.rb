@@ -1,5 +1,20 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'resources'))
 
+module Vagabond
+  module Resources
+    class Resource
+      def title
+        @name
+      end
+
+      def to_s
+        klass_name = self.class.to_s.split(/::/)[-1].downcase
+        "#{klass_name}(#{title})"
+      end
+    end
+  end
+end
+
 require 'vagabond/resources/file'
 require 'vagabond/resources/gem'
 require 'vagabond/resources/package'

@@ -1,6 +1,6 @@
 module Vagabond
   module Resources
-    class User
+    class User < Resource
       attr_accessor :name, :group_ids, :group_names, :shell, :homedir
 
       def initialize(name, options={})

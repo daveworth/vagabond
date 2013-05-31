@@ -1,6 +1,6 @@
 module Vagabond
   module Resources
-    class File
+    class File < Resource
       attr_accessor :name, :owner, :group, :path
 
       def initialize(name, options = {})
@@ -18,10 +18,6 @@ module Vagabond
 
       def title
         @path || @name
-      end
-
-      def to_s
-        "file(#{title})"
       end
 
       def exists?

@@ -1,4 +1,3 @@
-require 'pry'
 module Vagabond
   module Matchers
     module User

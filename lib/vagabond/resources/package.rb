@@ -1,18 +1,10 @@
 module Vagabond
   module Resources
-    class Package
+    class Package < Resource
       attr_accessor :name
 
       def initialize(name, options = {})
         @name = name
-      end
-
-      def title
-        @name
-      end
-
-      def to_s
-        "package(#{title})"
       end
 
       def state

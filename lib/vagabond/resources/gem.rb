@@ -1,18 +1,10 @@
 module Vagabond
   module Resources
-    class Gem
+    class Gem < Resource
       attr_accessor :name
 
       def initialize(name, options = {})
         @name = name
-      end
-
-      def title
-        @name
-      end
-
-      def to_s
-        "gem(#{title})"
       end
 
       def state
