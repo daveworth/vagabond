@@ -11,8 +11,11 @@ namespace :vagabond do
     env.cli("destroy")
   end
 
+  desc "Run both remote and local specs"
+  task :spec => [:local_spec, :remote_spec]
+
   desc "Run specs on vagabond"
-  task :spec do
+  task :local_spec do
     env = Vagrant::Environment.new
     puts "vagrant up"
     env.cli("up")
@@ -24,10 +27,22 @@ namespace :vagabond do
       end
     end
   end
+
+  desc "Run specs on Vagrant instance remotely"
+  task :remote_spec do
+    puts "Running remote specs"
+    system "rake remote_spec"
+  end
 end
 
 require 'rspec/core'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList['spec/**/*_spec.rb']
+  spec.pattern = FileList['spec/**/*_spec.rb'].exclude('spec/remote/*_spec.rb')
+  spec.rspec_opts = "--tag ~remote"
+end
+
+RSpec::Core::RakeTask.new(:remote_spec) do |spec|
+  spec.pattern = FileList['spec/remote/*_spec.rb']
+  spec.rspec_opts = "--tag remote"
 end
