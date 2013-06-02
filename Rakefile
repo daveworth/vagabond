@@ -12,15 +12,19 @@ namespace :vagabond do
   end
 
   desc "Run both remote and local specs"
-  task :spec => [:local_spec, :remote_spec]
+  task :spec => [:provision, :local_spec, :remote_spec]
 
-  desc "Run specs on vagabond"
-  task :local_spec do
+  task :provision do
     env = Vagrant::Environment.new
     puts "vagrant up"
     env.cli("up")
     puts "vagrant provision"
     env.cli("provision")
+  end
+
+  desc "Run specs on vagabond"
+  task :local_spec do
+    env = Vagrant::Environment.new
     env.vms.each do | name, vm |
       vm.channel.execute("cd /vagrant && rake spec") do |output_handle, data|
         puts data
