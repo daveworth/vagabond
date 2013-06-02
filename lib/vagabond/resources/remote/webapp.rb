@@ -2,8 +2,6 @@ require 'capybara'
 require 'capybara-webkit'
 require 'uri'
 
-require 'vagabond/resources/remote/resource'
-
 module Vagabond
   module Resources
     module Remote

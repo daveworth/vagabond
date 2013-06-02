@@ -20,7 +20,6 @@ require 'vagabond/resources/gem'
 require 'vagabond/resources/package'
 require 'vagabond/resources/service'
 require 'vagabond/resources/user'
-require 'vagabond/resources/nmap'
 
 module Vagabond
   module Resources
@@ -42,10 +41,6 @@ module Vagabond
 
     def user(name, options = {})
       Vagabond::Resources::User.new(name, options)
-    end
-
-    def nmap(name, options = {})
-      Vagabond::Resources::Nmap.new(options)
     end
   end
 end

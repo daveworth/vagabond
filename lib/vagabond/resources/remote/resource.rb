@@ -1,4 +1,3 @@
-require 'vagabond/resources'
 module Vagabond
   module Resources
     module Remote
@@ -7,3 +6,6 @@ module Vagabond
     end
   end
 end
+
+require 'vagabond/resources/remote/nmap'
+require 'vagabond/resources/remote/webapp'

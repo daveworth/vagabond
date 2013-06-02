@@ -1,8 +1,8 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'rspec'
-require 'vagabond'
 
-include Vagabond
+require 'vagabond/resources/remote'
+include Vagabond::Resources::Remote
 
 describe port_and_service_scan, :remote => true do
   it { should have_open_port 22     }
