@@ -11,7 +11,19 @@ gem_package 'rspec' do
   action :install
 end
 
+execute "comment out remote gems" do
+  command "sed -i '/group.*remote_test/ s/^/#/' Gemfile"
+  cwd "/vagrant"
+  action :run
+end
+
 execute "bundle install" do
+  cwd "/vagrant"
+  action :run
+end
+
+execute "uncomment remote gems" do
+  command "sed -i '/group.*remote_test/ s/^#//' Gemfile"
   cwd "/vagrant"
   action :run
 end
