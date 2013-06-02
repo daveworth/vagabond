@@ -1,3 +1,4 @@
+require 'set'
 require 'tempfile'
 require 'nmap/program'
 require 'nmap/xml'
@@ -45,7 +46,7 @@ module Vagabond
         end
 
         def open_port_numbers
-          @open_port_numbers ||= nmap_ports.map(&:number)
+          @open_port_numbers ||= Set.new(nmap_ports.map(&:number))
         end
         private
 
