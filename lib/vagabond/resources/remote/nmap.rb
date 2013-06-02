@@ -6,7 +6,7 @@ module Vagabond
   module Resources
     module Remote
       class Nmap < Resource
-        attr_accessor :ip_address
+        attr_accessor :ip_address, :open_port_numbers
         def initialize(options={})
           @ip_address = "10.1.1.2"#::Vagrant::Environment.new.vms.first.last.config.vm.networks.select { |type, info| type == :hostonly }.first.last.first
 
@@ -44,10 +44,10 @@ module Vagabond
           "portscan(nmap)"
         end
 
-        private
         def open_port_numbers
           @open_port_numbers ||= nmap_ports.map(&:number)
         end
+        private
 
         def open_service_names
           @open_service_names ||= open_services.map(&:name)
