@@ -8,7 +8,7 @@ namespace :vagabond do
   task :cleanup do
     env = Vagrant::Environment.new
     puts "vagrant destroy"
-    env.cli("destroy")
+    env.cli("destroy -f")
   end
 
   desc "Run both remote and local specs"
