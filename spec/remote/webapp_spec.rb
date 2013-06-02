@@ -1,8 +1,8 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'rspec'
 
-require 'vagabond/resources/remote'
-include Vagabond::Resources::Remote
+require 'vagabond/remote'
+include Vagabond::Remote
 
 describe "Testing Apache's default landing page" do
   let(:default_landing_page_copy) { "It works!" }
