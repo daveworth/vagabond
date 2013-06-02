@@ -9,7 +9,7 @@ module Vagabond
       class Nmap < Resource
         attr_accessor :ip_address, :open_port_numbers
         def initialize(options={})
-          @ip_address = "10.1.1.2"#::Vagrant::Environment.new.vms.first.last.config.vm.networks.select { |type, info| type == :hostonly }.first.last.first
+          @ip_address = Vagabond::Remote.ip_address
 
           @nmap_output_file = Tempfile.new("vagabond_remote_nmap")
           ::Nmap::Program.scan({}, {:out=>"/dev/null"}) do |nmap|
