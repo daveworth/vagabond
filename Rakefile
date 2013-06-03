@@ -39,14 +39,15 @@ namespace :vagabond do
   end
 end
 
+SPEC_PATH = "chef/spec"
 require 'rspec/core'
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec) do |spec|
-  spec.pattern = FileList['spec/**/*_spec.rb'].exclude('spec/remote/*_spec.rb')
+  spec.pattern = FileList["#{SPEC_PATH}/**/*_spec.rb"].exclude("#{SPEC_PATH}/remote/*_spec.rb")
   spec.rspec_opts = "--tag ~remote"
 end
 
 RSpec::Core::RakeTask.new(:remote_spec) do |spec|
-  spec.pattern = FileList['spec/remote/*_spec.rb']
+  spec.pattern = FileList["#{SPEC_PATH}/remote/*_spec.rb"]
   spec.rspec_opts = "--tag remote"
 end
