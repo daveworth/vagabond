@@ -37,8 +37,10 @@ We'd love some of your help or input!
 
 1. Install VirtualBox.
 2. Install Bundler.
-3. Run `bundle install`
-4. Run `rake vagabond:spec`
+3. Clone repository
+4. Update Submodules `git submodule init && git submodule update`
+5. Run `bundle install`
+6. Run `rake vagabond:spec`
 
 ### Adding new resources and matchers for Remote specs
 
