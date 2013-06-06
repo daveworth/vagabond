@@ -4,6 +4,12 @@ require 'vagrant'
 namespace :vagabond do
   task :full_spec => [:cleanup, :spec]
 
+  desc "get cookbooks submodule"
+  task :setup do
+    sh "git submodule init"
+    sh "git submodule update"
+  end
+
   desc "Remove existing vagrant vm"
   task :cleanup do
     env = Vagrant::Environment.new
