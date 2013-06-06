@@ -12,12 +12,17 @@ namespace :vagabond do
   end
 
   desc "Run both remote and local specs"
-  task :spec => [:provision, :local_spec, :remote_spec]
+  task :spec => [:vagrant_up, :vagrant_provision, :local_and_remote_specs]
+  task :local_and_remote_specs => [:local_spec, :remote_spec]
 
-  task :provision do
+  task :vagrant_up do
     env = Vagrant::Environment.new
     puts "vagrant up"
     env.cli("up")
+  end
+
+  task :vagrant_provision do
+    env = Vagrant::Environment.new
     puts "vagrant provision"
     env.cli("provision")
   end
@@ -36,6 +41,22 @@ namespace :vagabond do
   task :remote_spec do
     puts "Running remote specs"
     system "rake remote_spec"
+  end
+
+  desc "Demonstrate an upgrade between chef cookbook versions"
+  task :upgrade_path => [:cleanup, :checkout_v1, :spec, :upgrade_to_v2, :provision_at_test_again]
+  task :checkout_v1 do
+    puts "getting v1 cookbooks"
+    sh "cd chef && git co v1"
+  end
+  task :upgrade_to_v2 do
+    puts "getting v2 cookbooks for upgrade"
+    sh "cd chef && git co v2"
+  end
+  # get around Rake's unwilliness to run tasks twice!
+  task :provision_at_test_again do
+    sh "rake vagabond:vagrant_provision"
+    sh "rake vagabond:local_and_remote_specs"
   end
 end
 
