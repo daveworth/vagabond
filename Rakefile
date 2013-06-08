@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'vagrant'
+require 'erb'
 
 namespace :vagabond do
   task :full_spec => [:cleanup, :spec]
@@ -18,8 +19,15 @@ namespace :vagabond do
   end
 
   desc "Run both remote and local specs"
-  task :spec => [:vagrant_up, :vagrant_provision, :local_and_remote_specs]
+  task :spec => [:vagrantfile, :vagrant_up, :vagrant_provision, :local_and_remote_specs]
   task :local_and_remote_specs => [:local_spec, :remote_spec]
+
+  task :vagrantfile do
+    recipe = ENV['COOKBOOK'] || "vagabond"
+    vagrant_file = ERB.new(File.read('Vagrantfile.erb'))
+    output = vagrant_file.result(binding)
+    File.open("Vagrantfile", 'w') { |f| f.write output }
+  end
 
   task :vagrant_up do
     env = Vagrant::Environment.new
